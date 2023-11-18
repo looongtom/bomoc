@@ -1,4 +1,4 @@
-package com.project.bookstore.bookstore.model;
+package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
@@ -9,9 +9,6 @@ public class MobileEntity {
     @Id
     @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "ItemId")
-    private int itemId;
     @Basic
     @Column(name = "ProducerId")
     private int producerId;
@@ -37,14 +34,6 @@ public class MobileEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
     }
 
     public int getProducerId() {
@@ -103,7 +92,6 @@ public class MobileEntity {
         MobileEntity that = (MobileEntity) o;
 
         if (id != that.id) return false;
-        if (itemId != that.itemId) return false;
         if (producerId != that.producerId) return false;
         if (osType != that.osType) return false;
         if (Double.compare(that.price, price) != 0) return false;
@@ -119,7 +107,6 @@ public class MobileEntity {
         int result;
         long temp;
         result = id;
-        result = 31 * result + itemId;
         result = 31 * result + producerId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);

@@ -1,4 +1,4 @@
-package com.project.bookstore.bookstore.model;
+package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
@@ -7,37 +7,34 @@ import jakarta.persistence.*;
 public class BookEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "Id")
+    @Column(name = "Id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "ItemId")
-    private int itemId;
-    @Basic
-    @Column(name = "AuthorId")
+    @Column(name = "AuthorId", nullable = false)
     private int authorId;
     @Basic
-    @Column(name = "PublisherId")
+    @Column(name = "PublisherId", nullable = false)
     private int publisherId;
     @Basic
-    @Column(name = "Title")
+    @Column(name = "Title", nullable = true, length = 255)
     private String title;
     @Basic
-    @Column(name = "Description")
+    @Column(name = "Description", nullable = true, length = 255)
     private String description;
     @Basic
-    @Column(name = "PublishYear")
+    @Column(name = "PublishYear", nullable = false)
     private int publishYear;
     @Basic
-    @Column(name = "NumerOfPages")
+    @Column(name = "NumerOfPages", nullable = false)
     private int numerOfPages;
     @Basic
-    @Column(name = "Image")
+    @Column(name = "Image", nullable = true, length = 255)
     private String image;
     @Basic
-    @Column(name = "Price")
+    @Column(name = "Price", nullable = false, precision = 0)
     private double price;
     @Basic
-    @Column(name = "Language")
+    @Column(name = "Language", nullable = true, length = 255)
     private String language;
 
     public int getId() {
@@ -46,14 +43,6 @@ public class BookEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
     }
 
     public int getAuthorId() {
@@ -136,7 +125,6 @@ public class BookEntity {
         BookEntity that = (BookEntity) o;
 
         if (id != that.id) return false;
-        if (itemId != that.itemId) return false;
         if (authorId != that.authorId) return false;
         if (publisherId != that.publisherId) return false;
         if (publishYear != that.publishYear) return false;
@@ -155,7 +143,6 @@ public class BookEntity {
         int result;
         long temp;
         result = id;
-        result = 31 * result + itemId;
         result = 31 * result + authorId;
         result = 31 * result + publisherId;
         result = 31 * result + (title != null ? title.hashCode() : 0);

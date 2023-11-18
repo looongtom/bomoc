@@ -1,4 +1,4 @@
-package com.project.bookstore.bookstore.model;
+package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
@@ -9,6 +9,15 @@ public class PaymentEntity {
     @Id
     @Column(name = "Id")
     private String id;
+    @Basic
+    @Column(name = "CartId")
+    private int cartId;
+    @Basic
+    @Column(name = "ShipmentId")
+    private int shipmentId;
+    @Basic
+    @Column(name = "OrderId2")
+    private int orderId2;
     @Basic
     @Column(name = "OrderId")
     private int orderId;
@@ -37,6 +46,30 @@ public class PaymentEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+
+    public int getShipmentId() {
+        return shipmentId;
+    }
+
+    public void setShipmentId(int shipmentId) {
+        this.shipmentId = shipmentId;
+    }
+
+    public int getOrderId2() {
+        return orderId2;
+    }
+
+    public void setOrderId2(int orderId2) {
+        this.orderId2 = orderId2;
     }
 
     public int getOrderId() {
@@ -102,6 +135,9 @@ public class PaymentEntity {
 
         PaymentEntity that = (PaymentEntity) o;
 
+        if (cartId != that.cartId) return false;
+        if (shipmentId != that.shipmentId) return false;
+        if (orderId2 != that.orderId2) return false;
         if (orderId != that.orderId) return false;
         if (Double.compare(that.totalPrice, totalPrice) != 0) return false;
         if (status != that.status) return false;
@@ -120,6 +156,9 @@ public class PaymentEntity {
         int result;
         long temp;
         result = id != null ? id.hashCode() : 0;
+        result = 31 * result + cartId;
+        result = 31 * result + shipmentId;
+        result = 31 * result + orderId2;
         result = 31 * result + orderId;
         temp = Double.doubleToLongBits(totalPrice);
         result = 31 * result + (int) (temp ^ (temp >>> 32));

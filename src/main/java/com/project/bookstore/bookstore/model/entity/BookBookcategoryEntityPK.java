@@ -1,4 +1,4 @@
-package com.project.bookstore.bookstore.model;
+package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
