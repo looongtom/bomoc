@@ -1,4 +1,4 @@
-package com.project.bookstore.bookstore.model;
+package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
@@ -9,9 +9,6 @@ public class ClothesEntity {
     @Id
     @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "ItemId")
-    private int itemId;
     @Basic
     @Column(name = "BrandId")
     private int brandId;
@@ -34,14 +31,6 @@ public class ClothesEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
     }
 
     public int getBrandId() {
@@ -92,7 +81,6 @@ public class ClothesEntity {
         ClothesEntity that = (ClothesEntity) o;
 
         if (id != that.id) return false;
-        if (itemId != that.itemId) return false;
         if (brandId != that.brandId) return false;
         if (price != that.price) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
@@ -105,7 +93,6 @@ public class ClothesEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + itemId;
         result = 31 * result + brandId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (size != null ? size.hashCode() : 0);
