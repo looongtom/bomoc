@@ -1,5 +1,6 @@
 ## Lưu ý
 **1. Generate database từ Class diagram.xml ở git**
+
 **2. Các bảng có tên là từ ghép thì phải để ở dạng snake_case**
 
 Ví dụ:
