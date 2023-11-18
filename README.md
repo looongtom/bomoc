@@ -11,3 +11,7 @@ Với bảng như này
 => Chuyển về như này
 ![image](https://github.com/looongtom/bomoc/assets/94033356/af9ca416-9921-44d0-aee8-478e62078a28)
 
+3. Đổi thông tin ở application.properties MySQL của mình
+![image](https://github.com/looongtom/bomoc/assets/94033356/3c15194d-ce01-4b8e-9802-c4f39cfc71ac)
+
+
