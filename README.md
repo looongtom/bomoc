@@ -17,4 +17,6 @@ Với bảng như này
    
 ![image](https://github.com/looongtom/bomoc/assets/94033356/3c15194d-ce01-4b8e-9802-c4f39cfc71ac)
 
+4. Dành cho người lười thì tôi có file insert một vài data ở src/main/resources/insert data.sql 😀
+
 
