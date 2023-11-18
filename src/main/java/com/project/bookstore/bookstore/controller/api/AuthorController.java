@@ -33,10 +33,12 @@ public class AuthorController {
             authorEntityPage = authorEntityRepository.findByNameContaining(keyword,pageable);
         }
         Map<String,Object> response = new HashMap<>();
-        response.put("listBooks",authorEntityPage.getContent());
+        response.put("listAuthors",authorEntityPage.getContent());
         response.put("currentPage",authorEntityPage.getNumber());
         response.put("totalItems",authorEntityPage.getTotalElements());
         response.put("totalPages",authorEntityPage.getTotalPages());
+        response.put("search",keyword);
+
         if(authorEntityPage.hasContent()){
             return new ResponseEntity<>(response, HttpStatus.OK);
         }

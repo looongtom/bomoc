@@ -35,6 +35,8 @@ public class BookEntityController {
         response.put("currentPage",bookEntityPage.getNumber());
         response.put("totalItems",bookEntityPage.getTotalElements());
         response.put("totalPages",bookEntityPage.getTotalPages());
+        response.put("search",keyword);
+
         if(bookEntityPage.hasContent()){
             return new ResponseEntity<>(response, HttpStatus.OK);
         }

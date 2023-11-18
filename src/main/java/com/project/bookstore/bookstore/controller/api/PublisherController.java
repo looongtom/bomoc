@@ -32,10 +32,12 @@ public class PublisherController {
             publisherEntities = publisherEntityRepository.findByName(keyword,pageable);
         }
         Map<String,Object> response = new HashMap<>();
-        response.put("listAuthors",publisherEntities.getContent());
+        response.put("listPublishers",publisherEntities.getContent());
         response.put("currentPage",publisherEntities.getNumber());
         response.put("totalItems",publisherEntities.getTotalElements());
         response.put("totalPages",publisherEntities.getTotalPages());
+        response.put("search",keyword);
+
         if(publisherEntities.hasContent()){
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
