@@ -1,20 +1,18 @@
-package com.project.bookstore.bookstore.model;
+package com.project.bookstore.bookstore.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.io.Serializable;
-
-public class ClothesClothescategoryEntityPK implements Serializable {
+@Entity
+@Table(name = "clothes_clothescategory", schema = "bo_mo_c", catalog = "")
+@IdClass(ClothesClothescategoryEntityPK.class)
+public class ClothesClothescategoryEntity {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @Column(name = "ClothesId")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int clothesId;
-    @Column(name = "ClothesCategoryId")
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "ClothesCategoryId")
     private int clothesCategoryId;
 
     public int getClothesId() {
@@ -38,7 +36,7 @@ public class ClothesClothescategoryEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ClothesClothescategoryEntityPK that = (ClothesClothescategoryEntityPK) o;
+        ClothesClothescategoryEntity that = (ClothesClothescategoryEntity) o;
 
         if (clothesId != that.clothesId) return false;
         if (clothesCategoryId != that.clothesCategoryId) return false;

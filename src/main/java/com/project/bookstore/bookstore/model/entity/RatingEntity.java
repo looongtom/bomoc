@@ -1,22 +1,22 @@
-package com.project.bookstore.bookstore.model;
+package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
 import java.sql.Date;
 
 @Entity
-@Table(name = "comment", schema = "bo_mo_c", catalog = "")
-public class CommentEntity {
+@Table(name = "rating", schema = "bo_mo_c", catalog = "")
+public class RatingEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Id")
     private int id;
     @Basic
-    @Column(name = "ClothesId")
-    private int clothesId;
-    @Basic
     @Column(name = "MobileId")
     private int mobileId;
+    @Basic
+    @Column(name = "ClothesId")
+    private int clothesId;
     @Basic
     @Column(name = "BookId")
     private int bookId;
@@ -24,8 +24,8 @@ public class CommentEntity {
     @Column(name = "CreatedDate")
     private Date createdDate;
     @Basic
-    @Column(name = "Content")
-    private String content;
+    @Column(name = "RatingScore")
+    private int ratingScore;
 
     public int getId() {
         return id;
@@ -35,20 +35,20 @@ public class CommentEntity {
         this.id = id;
     }
 
-    public int getClothesId() {
-        return clothesId;
-    }
-
-    public void setClothesId(int clothesId) {
-        this.clothesId = clothesId;
-    }
-
     public int getMobileId() {
         return mobileId;
     }
 
     public void setMobileId(int mobileId) {
         this.mobileId = mobileId;
+    }
+
+    public int getClothesId() {
+        return clothesId;
+    }
+
+    public void setClothesId(int clothesId) {
+        this.clothesId = clothesId;
     }
 
     public int getBookId() {
@@ -67,12 +67,12 @@ public class CommentEntity {
         this.createdDate = createdDate;
     }
 
-    public String getContent() {
-        return content;
+    public int getRatingScore() {
+        return ratingScore;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setRatingScore(int ratingScore) {
+        this.ratingScore = ratingScore;
     }
 
     @Override
@@ -80,14 +80,14 @@ public class CommentEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CommentEntity that = (CommentEntity) o;
+        RatingEntity that = (RatingEntity) o;
 
         if (id != that.id) return false;
-        if (clothesId != that.clothesId) return false;
         if (mobileId != that.mobileId) return false;
+        if (clothesId != that.clothesId) return false;
         if (bookId != that.bookId) return false;
+        if (ratingScore != that.ratingScore) return false;
         if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (content != null ? !content.equals(that.content) : that.content != null) return false;
 
         return true;
     }
@@ -95,11 +95,11 @@ public class CommentEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + clothesId;
         result = 31 * result + mobileId;
+        result = 31 * result + clothesId;
         result = 31 * result + bookId;
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + ratingScore;
         return result;
     }
 }

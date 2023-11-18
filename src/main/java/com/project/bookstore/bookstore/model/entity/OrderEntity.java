@@ -1,4 +1,4 @@
-package com.project.bookstore.bookstore.model;
+package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
@@ -10,11 +10,11 @@ public class OrderEntity {
     @Column(name = "Id")
     private int id;
     @Basic
-    @Column(name = "VoucherId")
-    private int voucherId;
-    @Basic
     @Column(name = "CustomerIdCus")
     private int customerIdCus;
+    @Basic
+    @Column(name = "VoucherId")
+    private int voucherId;
     @Basic
     @Column(name = "OrderTotalPrice")
     private double orderTotalPrice;
@@ -30,20 +30,20 @@ public class OrderEntity {
         this.id = id;
     }
 
-    public int getVoucherId() {
-        return voucherId;
-    }
-
-    public void setVoucherId(int voucherId) {
-        this.voucherId = voucherId;
-    }
-
     public int getCustomerIdCus() {
         return customerIdCus;
     }
 
     public void setCustomerIdCus(int customerIdCus) {
         this.customerIdCus = customerIdCus;
+    }
+
+    public int getVoucherId() {
+        return voucherId;
+    }
+
+    public void setVoucherId(int voucherId) {
+        this.voucherId = voucherId;
     }
 
     public double getOrderTotalPrice() {
@@ -70,8 +70,8 @@ public class OrderEntity {
         OrderEntity that = (OrderEntity) o;
 
         if (id != that.id) return false;
-        if (voucherId != that.voucherId) return false;
         if (customerIdCus != that.customerIdCus) return false;
+        if (voucherId != that.voucherId) return false;
         if (Double.compare(that.orderTotalPrice, orderTotalPrice) != 0) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
 
@@ -83,8 +83,8 @@ public class OrderEntity {
         int result;
         long temp;
         result = id;
-        result = 31 * result + voucherId;
         result = 31 * result + customerIdCus;
+        result = 31 * result + voucherId;
         temp = Double.doubleToLongBits(orderTotalPrice);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (status != null ? status.hashCode() : 0);
