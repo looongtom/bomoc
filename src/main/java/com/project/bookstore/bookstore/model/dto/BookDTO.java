@@ -2,6 +2,8 @@ package com.project.bookstore.bookstore.model.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class BookDTO {
     private int id;
@@ -16,6 +18,7 @@ public class BookDTO {
     private String language;
     private String authorName;
     private String publisherName;
+    private List<String> categoryName;
 
     public int getId() {
         return id;

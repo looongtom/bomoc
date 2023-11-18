@@ -2,11 +2,10 @@ package com.project.bookstore.bookstore.controller.api;
 
 import com.project.bookstore.bookstore.model.dto.BookDTO;
 import com.project.bookstore.bookstore.model.entity.AuthorEntity;
+import com.project.bookstore.bookstore.model.entity.BookBookcategoryEntity;
 import com.project.bookstore.bookstore.model.entity.BookEntity;
 import com.project.bookstore.bookstore.model.entity.PublisherEntity;
-import com.project.bookstore.bookstore.repository.AuthorEntityRepository;
-import com.project.bookstore.bookstore.repository.BookEntityRepository;
-import com.project.bookstore.bookstore.repository.PublisherEntityRepository;
+import com.project.bookstore.bookstore.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -32,6 +32,11 @@ public class BookEntityController {
     private PublisherEntityRepository publisherEntityRepository;// khai báo để lấy tên publisher từ publisher_id
     @Autowired
     private ModelMapper modelMapper; //khai báo để chuyển từ entity sang dto
+
+    @Autowired
+    private BookcategoryEntityRepository bookCategoryRepository;//khai báo để lấy tên category name từ category_id
+    @Autowired
+    private BookBookcategoryEntityRepository book_bookCategoryRepository;//khai báo để lấy tên category từ book_id
     @GetMapping("/search")
     public ResponseEntity<Map<String, Object>> search(@RequestParam String keyword,int page,int size, String sortString){
         Pageable pageable = PageRequest.of(page,size, Sort.by(sortString));
@@ -60,7 +65,7 @@ public class BookEntityController {
     @GetMapping("/getById")
     public ResponseEntity<?> getById(@RequestParam int id){
         return bookEntityRepository.findById(id)
-                .map(bookEntity -> ResponseEntity.ok(bookEntity))
+                .map(bookEntity -> ResponseEntity.ok(convertToDTO(bookEntity)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -92,10 +97,17 @@ public class BookEntityController {
         if(findAuthor != null)
             bookDTO.setAuthorName(findAuthor.getName());
         else bookDTO.setAuthorName("Unknown author");
-
         if(findPublisher != null)
             bookDTO.setPublisherName(findPublisher.getName());
         else bookDTO.setPublisherName("Unknown publisher");
+
+        List<BookBookcategoryEntity> getBookCategory = book_bookCategoryRepository.findByBookId(bookEntity.getId());
+        List<String> categoryName = getBookCategory.stream().map(bookBookcategoryEntity -> {
+            return bookCategoryRepository.findById(bookBookcategoryEntity.getBookCategoryId()).orElse(null).getName();
+        }).collect(Collectors.toList());
+        if(categoryName.isEmpty())
+            categoryName.add("No belong to any categories");
+        else bookDTO.setCategoryName(categoryName);
         return bookDTO;
     }
 
