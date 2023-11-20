@@ -19,4 +19,7 @@ Với bảng như này
 
 4. Dành cho người lười thì tôi có file insert một vài data ở src/main/resources/insert data.sql 😀
 
+5. Để test api trên Postman thì chạy cái này để đăng nhập trước
+
+![image](https://github.com/looongtom/bomoc/assets/94033356/c46d8d8b-834c-47c9-a52f-dea98a845a59)
 
