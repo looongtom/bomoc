@@ -13,13 +13,13 @@ public class RatingEntity {
     private int id;
     @Basic
     @Column(name = "MobileId")
-    private int mobileId;
+    private Integer mobileId;
     @Basic
     @Column(name = "ClothesId")
-    private int clothesId;
+    private Integer clothesId;
     @Basic
     @Column(name = "BookId")
-    private int bookId;
+    private Integer bookId;
     @Basic
     @Column(name = "CreatedDate")
     private Date createdDate;
@@ -35,27 +35,27 @@ public class RatingEntity {
         this.id = id;
     }
 
-    public int getMobileId() {
+    public Integer getMobileId() {
         return mobileId;
     }
 
-    public void setMobileId(int mobileId) {
+    public void setMobileId(Integer mobileId) {
         this.mobileId = mobileId;
     }
 
-    public int getClothesId() {
+    public Integer getClothesId() {
         return clothesId;
     }
 
-    public void setClothesId(int clothesId) {
+    public void setClothesId(Integer clothesId) {
         this.clothesId = clothesId;
     }
 
-    public int getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
