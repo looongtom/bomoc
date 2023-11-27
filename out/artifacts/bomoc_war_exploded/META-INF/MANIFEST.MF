@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: Admins
+Build-Jdk: 19.0.1
+Implementation-Title: bomoc
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.project.bomoc
+Main-Class: ${start-class}
+

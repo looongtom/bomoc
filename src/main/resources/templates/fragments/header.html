@@ -1,0 +1,71 @@
+<header th:fragment="header"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" th:href="@{'/api/v1/admin/sim/page/' +${1}+'/size/' +${5}}">
+      QUẢN LÝ BoMoC
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="topNavbar">
+      <ul class="navbar-nav">
+
+<!--        <div class="btn-group mr-2">-->
+<!--          <a th:href="@{'/api/v1/admin/sim/page/' +${1} +'/size/' +${5}}">-->
+<!--            <button type="button" class="btn btn-info" >Sim</button>-->
+<!--          </a>-->
+<!--          <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--            <span class="sr-only">Toggle Dropdown</span>-->
+<!--          </button>-->
+<!--          <div class="dropdown-menu">-->
+<!--            <a class="dropdown-item" th:href="@{/api/v1/admin/sim/addNew}">Add new Sim</a>-->
+<!--            <a class="dropdown-item" href="#">Another action</a>-->
+<!--            <a class="dropdown-item" href="#">Something else here</a>-->
+<!--            <div class="dropdown-divider"></div>-->
+<!--            <a class="dropdown-item" href="#">Separated link</a>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="btn-group mr-2">-->
+<!--          <a th:href="@{/api/v1/admin/sim/type/page/1/size/5}">-->
+<!--            <button type="button" class="btn btn-info" >Loại sim</button>-->
+<!--          </a>-->
+<!--          <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--            <span class="sr-only">Toggle Dropdown</span>-->
+<!--          </button>-->
+<!--          <div class="dropdown-menu">-->
+<!--            <a class="dropdown-item" th:href="@{/api/v1/admin/sim/type/addNewType}">Add new Loại sim</a>-->
+<!--            <a class="dropdown-item" href="#">Another action</a>-->
+<!--            <a class="dropdown-item" href="#">Something else here</a>-->
+<!--            <div class="dropdown-divider"></div>-->
+<!--            <a class="dropdown-item" href="#">Separated link</a>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+        <div class="btn-group mr-2">
+          <a th:href="@{'/api/v1/admin/user/findUserByEmail/'+${#authentication.name}}">
+          <button type="button" class="btn btn-danger" sec:authentication="principal.username"></button>
+          </a>
+
+          <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Thêm tài khoản</a>
+            <a class="dropdown-item" th:href="@{'/api/v1/admin/user/findUserByEmail/'+${#authentication.name}}">Cập nhật thông tin</a>
+            <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+          </div>
+        </div>
+
+
+        <li class="nav-item ">
+          <a class="btn btn-outline-info" aria-current="page" th:href="@{/logout}">Logout</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
