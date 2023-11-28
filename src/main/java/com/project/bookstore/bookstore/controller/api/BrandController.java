@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/brand")
+@RequestMapping("/api/brand")
 @Log4j2
 public class BrandController {
     @Autowired

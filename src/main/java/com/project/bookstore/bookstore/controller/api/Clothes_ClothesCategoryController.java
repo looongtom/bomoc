@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clothes_clothescategory")
+@RequestMapping("/api/clothes_clothescategory")
 public class Clothes_ClothesCategoryController {
     @Autowired
     private ClothesClothescategoryEntityRepository repository;

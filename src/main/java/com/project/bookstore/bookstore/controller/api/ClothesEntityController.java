@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/clothes")
+@RequestMapping("/api/clothes")
 public class ClothesEntityController {
     @Autowired
     private ClothesEntityRepository clothesEntityRepository;

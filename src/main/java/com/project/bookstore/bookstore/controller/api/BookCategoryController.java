@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/bookCategories")
+@RequestMapping("/api/bookCategories")
 
 public class BookCategoryController {
     @Autowired

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/book_bookcategory")
+@RequestMapping("/api/book_bookcategory")
 public class Book_BookcategoryController {
     @Autowired
     private BookBookcategoryEntityRepository repository;

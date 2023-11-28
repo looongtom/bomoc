@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,7 +23,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/books")
+
+@RequestMapping("/api/books")
 public class BookEntityController {
     @Autowired
     private BookEntityRepository bookEntityRepository;// khai báo repository của book, các class khác khai báo tương tự (Khác tên class)
@@ -63,6 +65,7 @@ public class BookEntityController {
     }
 
     @GetMapping("/getById")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> getById(@RequestParam int id){
         return bookEntityRepository.findById(id)
                 .map(bookEntity -> ResponseEntity.ok(convertToDTO(bookEntity)))
@@ -70,6 +73,7 @@ public class BookEntityController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> addNew(@RequestBody BookEntity bookEntity){
         if(bookEntityRepository.existsByTitleAndAuthor(bookEntity.getTitle(),bookEntity.getAuthorId())){
             return ResponseEntity.badRequest().body("Book already exists with the same title and author.");
@@ -78,12 +82,13 @@ public class BookEntityController {
         return ResponseEntity.ok(savedBook);
     }
     @PostMapping("/update")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> update(@RequestBody BookEntity updateBookEntity){
         BookEntity bookEntity = bookEntityRepository.findById(updateBookEntity.getId()).orElse(null);
         if(bookEntity == null){
             return ResponseEntity.notFound().build();
         }
-        if(bookEntityRepository.existsByTitleAndAuthor(updateBookEntity.getTitle(),updateBookEntity.getAuthorId())){
+        if(bookEntityRepository.existsByTitleAndAuthor(String.valueOf(updateBookEntity.getId()),updateBookEntity.getAuthorId())){
             return ResponseEntity.badRequest().body("Book already exists with the same title and author.");
         }
         BookEntity savedBook=bookEntityRepository.save(updateBookEntity);

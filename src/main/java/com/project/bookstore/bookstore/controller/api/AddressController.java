@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/api/address")
 public class AddressController {
     @Autowired
     private AddressEntityRepository addressEntityRepository;

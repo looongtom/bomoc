@@ -19,7 +19,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/fullname")
+@RequestMapping("/api/fullname")
 public class FullNameController {
     @Autowired
     private FullnameEntityRepository fullnameEntityRepository;
