@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/mobiles")
+@RequestMapping("/api/mobiles")
 public class MobileEntityController {
     @Autowired
     private MobileEntityRepository mobileEntityRepository;

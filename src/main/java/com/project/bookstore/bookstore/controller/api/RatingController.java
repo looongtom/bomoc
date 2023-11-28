@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/rating")
+@RequestMapping("/api/rating")
 @Log4j2
 public class RatingController {
     @Autowired

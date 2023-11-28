@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/publisher")
+@RequestMapping("/api/publisher")
 public class PublisherController {
     @Autowired
     private PublisherEntityRepository publisherEntityRepository;

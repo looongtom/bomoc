@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/producer")
+@RequestMapping("/api/producer")
 public class ProducerController {
     @Autowired
     private ProducerEntityRepository producerEntityRepository;

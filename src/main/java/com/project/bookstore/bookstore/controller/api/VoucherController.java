@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/voucher")
+@RequestMapping("/api/voucher")
 public class VoucherController {
     @Autowired
     private VoucherEntityRepository voucherEntityRepository;

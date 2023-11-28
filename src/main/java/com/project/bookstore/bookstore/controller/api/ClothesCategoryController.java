@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/clothesCategory")
+@RequestMapping("/api/clothesCategory")
 public class ClothesCategoryController {
     @Autowired
     private ClothescategoryEntityRepository clothesCategoryRepository;
