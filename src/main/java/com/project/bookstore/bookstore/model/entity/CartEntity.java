@@ -2,6 +2,8 @@ package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "cart", schema = "bo_mo_c", catalog = "")
 public class CartEntity {
@@ -12,12 +14,16 @@ public class CartEntity {
     @Basic
     @Column(name = "CartTotalPrice")
     private double cartTotalPrice;
+
+    @Column(name = "userId")
+    private int userId;
+
+    // status: trường này để check xem giỏ hàng đã được thanh toán hay chưa
+    // 0: chưa thanh toán
+    // 1: đã thanh toán rồi
     @Basic
-    @Column(name = "ItemId")
-    private int itemId;
-    @Basic
-    @Column(name = "OrderId")
-    private int orderId;
+    @Column(name = "status")
+    private int status;
 
     public int getId() {
         return id;
@@ -35,46 +41,32 @@ public class CartEntity {
         this.cartTotalPrice = cartTotalPrice;
     }
 
-    public int getItemId() {
-        return itemId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getStatus() {
+        return status;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         CartEntity that = (CartEntity) o;
-
-        if (id != that.id) return false;
-        if (Double.compare(that.cartTotalPrice, cartTotalPrice) != 0) return false;
-        if (itemId != that.itemId) return false;
-        if (orderId != that.orderId) return false;
-
-        return true;
+        return id == that.id && Double.compare(that.cartTotalPrice, cartTotalPrice) == 0 && userId == that.userId && status == that.status;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        temp = Double.doubleToLongBits(cartTotalPrice);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + itemId;
-        result = 31 * result + orderId;
-        return result;
+        return Objects.hash(id, cartTotalPrice, userId, status);
     }
 }
