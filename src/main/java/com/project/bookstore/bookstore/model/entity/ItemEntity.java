@@ -2,6 +2,8 @@ package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "item", schema = "bo_mo_c", catalog = "")
 public class ItemEntity {
@@ -11,16 +13,19 @@ public class ItemEntity {
     private int id;
     @Basic
     @Column(name = "MobileId")
-    private int mobileId;
+    private Integer mobileId;
     @Basic
     @Column(name = "ClothesId")
-    private int clothesId;
+    private Integer clothesId;
     @Basic
     @Column(name = "BookId")
-    private int bookId;
+    private Integer bookId;
     @Basic
     @Column(name = "Quantity")
     private int quantity;
+    @Basic
+    @Column(name = "cartId")
+    private int cartId;
 
     public int getId() {
         return id;
@@ -30,27 +35,27 @@ public class ItemEntity {
         this.id = id;
     }
 
-    public int getMobileId() {
+    public Integer getMobileId() {
         return mobileId;
     }
 
-    public void setMobileId(int mobileId) {
+    public void setMobileId(Integer mobileId) {
         this.mobileId = mobileId;
     }
 
-    public int getClothesId() {
+    public Integer getClothesId() {
         return clothesId;
     }
 
-    public void setClothesId(int clothesId) {
+    public void setClothesId(Integer clothesId) {
         this.clothesId = clothesId;
     }
 
-    public int getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
@@ -62,29 +67,24 @@ public class ItemEntity {
         this.quantity = quantity;
     }
 
+    public int getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ItemEntity that = (ItemEntity) o;
-
-        if (id != that.id) return false;
-        if (mobileId != that.mobileId) return false;
-        if (clothesId != that.clothesId) return false;
-        if (bookId != that.bookId) return false;
-        if (quantity != that.quantity) return false;
-
-        return true;
+        return id == that.id && quantity == that.quantity && cartId == that.cartId && Objects.equals(mobileId, that.mobileId) && Objects.equals(clothesId, that.clothesId) && Objects.equals(bookId, that.bookId);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + mobileId;
-        result = 31 * result + clothesId;
-        result = 31 * result + bookId;
-        result = 31 * result + quantity;
-        return result;
+        return Objects.hash(id, mobileId, clothesId, bookId, quantity, cartId);
     }
 }

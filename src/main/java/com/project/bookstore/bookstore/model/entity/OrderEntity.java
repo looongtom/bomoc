@@ -2,6 +2,8 @@ package com.project.bookstore.bookstore.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "order", schema = "bo_mo_c", catalog = "")
 public class OrderEntity {
@@ -21,6 +23,10 @@ public class OrderEntity {
     @Basic
     @Column(name = "Status")
     private Integer status;
+
+    @Basic
+    @Column(name = "cartId")
+    private int cartId;
 
     public int getId() {
         return id;
@@ -62,32 +68,24 @@ public class OrderEntity {
         this.status = status;
     }
 
+    public int getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         OrderEntity that = (OrderEntity) o;
-
-        if (id != that.id) return false;
-        if (customerIdCus != that.customerIdCus) return false;
-        if (voucherId != that.voucherId) return false;
-        if (Double.compare(that.orderTotalPrice, orderTotalPrice) != 0) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-
-        return true;
+        return id == that.id && customerIdCus == that.customerIdCus && voucherId == that.voucherId && Double.compare(that.orderTotalPrice, orderTotalPrice) == 0 && cartId == that.cartId && status.equals(that.status);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + customerIdCus;
-        result = 31 * result + voucherId;
-        temp = Double.doubleToLongBits(orderTotalPrice);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
+        return Objects.hash(id, customerIdCus, voucherId, orderTotalPrice, status, cartId);
     }
 }
