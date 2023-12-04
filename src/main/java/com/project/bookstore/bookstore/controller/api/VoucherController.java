@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,27 +23,16 @@ public class VoucherController {
     private VoucherEntityRepository voucherEntityRepository;
 
 
-    @GetMapping("/search")
-    public ResponseEntity<Map<String, Object>> search(@RequestParam String keyword, int page, int size, String sortString){
-        Pageable pageable = PageRequest.of(page,size, Sort.by(sortString));
-        Page<VoucherEntity> voucherEntityPage = null;
-        if(keyword == null || keyword.isEmpty() ){
-            voucherEntityPage = voucherEntityRepository.findAll(pageable);
-        }else{
-            voucherEntityPage = voucherEntityRepository.findAllByNameDiscountContains(keyword,pageable);
-        }
-        Map<String,Object> response = new HashMap<>();
-        response.put("listVouchers",voucherEntityPage.getContent());
-        response.put("currentPage",voucherEntityPage.getNumber());
-        response.put("totalItems",voucherEntityPage.getTotalElements());
-        response.put("totalPages",voucherEntityPage.getTotalPages());
-        response.put("search",keyword);
-
-        if(voucherEntityPage.hasContent()){
-            return new ResponseEntity<>(response, HttpStatus.OK);
+    @GetMapping("/getAll")
+    public ResponseEntity<List<VoucherEntity>> getAllVoucher() {
+        LocalDate currentDate = LocalDate.now();
+        List<VoucherEntity> voucherEntityList = voucherEntityRepository.findAllByExprireTimeAfter(currentDate);
+        if (!voucherEntityList.isEmpty()) {
+            return new ResponseEntity<>(voucherEntityList, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
 
 
     @GetMapping("/getById")
