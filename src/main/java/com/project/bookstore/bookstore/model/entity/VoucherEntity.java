@@ -24,6 +24,9 @@ public class VoucherEntity {
     @Column(name = "ConditionUsing")
     private String conditionUsing;
 
+    @Column(name = "VoucherType")
+    private  Integer voucherType;
+
     public int getId() {
         return id;
     }
@@ -63,6 +66,14 @@ public class VoucherEntity {
     public void setConditionUsing(String conditionUsing) {
         this.conditionUsing = conditionUsing;
     }
+    public Integer getVoucherType() {
+        return voucherType;
+    }
+
+    public void setVoucherType(Integer voucherType) {
+        this.voucherType = voucherType;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -73,12 +84,10 @@ public class VoucherEntity {
 
         if (id != that.id) return false;
         if (Double.compare(that.discountPercent, discountPercent) != 0) return false;
-        if (nameDiscount != null ? !nameDiscount.equals(that.nameDiscount) : that.nameDiscount != null) return false;
-        if (exprireTime != null ? !exprireTime.equals(that.exprireTime) : that.exprireTime != null) return false;
-        if (conditionUsing != null ? !conditionUsing.equals(that.conditionUsing) : that.conditionUsing != null)
-            return false;
-
-        return true;
+        if (!nameDiscount.equals(that.nameDiscount)) return false;
+        if (!exprireTime.equals(that.exprireTime)) return false;
+        if (!conditionUsing.equals(that.conditionUsing)) return false;
+        return voucherType.equals(that.voucherType);
     }
 
     @Override
@@ -86,11 +95,12 @@ public class VoucherEntity {
         int result;
         long temp;
         result = id;
-        result = 31 * result + (nameDiscount != null ? nameDiscount.hashCode() : 0);
-        result = 31 * result + (exprireTime != null ? exprireTime.hashCode() : 0);
+        result = 31 * result + nameDiscount.hashCode();
+        result = 31 * result + exprireTime.hashCode();
         temp = Double.doubleToLongBits(discountPercent);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (conditionUsing != null ? conditionUsing.hashCode() : 0);
+        result = 31 * result + conditionUsing.hashCode();
+        result = 31 * result + voucherType.hashCode();
         return result;
     }
 }
