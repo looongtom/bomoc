@@ -23,7 +23,7 @@ public class VoucherController {
     private VoucherEntityRepository voucherEntityRepository;
 
 
-    @GetMapping("")
+    @GetMapping("/getAll")
     public ResponseEntity<List<VoucherEntity>> getAllVoucher() {
         LocalDate currentDate = LocalDate.now();
         List<VoucherEntity> voucherEntityList = voucherEntityRepository.findAllByExprireTimeAfter(currentDate);
