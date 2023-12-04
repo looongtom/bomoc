@@ -25,7 +25,7 @@ public class VoucherEntity {
     private String conditionUsing;
 
     @Column(name = "VoucherType")
-    private  Integer voucherType;
+    private Integer voucherType;
 
     public int getId() {
         return id;
