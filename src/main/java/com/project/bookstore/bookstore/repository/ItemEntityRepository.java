@@ -33,4 +33,6 @@ public interface ItemEntityRepository extends JpaRepository<ItemEntity, Integer>
 
     @Query("select b from ItemEntity b where b.clothesId = ?1 and b.cartId = ?2")
     ItemEntity existClothesItemInCart(Integer clothesId, int cartId);
+
+    List<ItemEntity> getItemEntitiesByCartId(int cartId);
 }

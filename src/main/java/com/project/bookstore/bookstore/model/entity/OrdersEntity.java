@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "order", schema = "bo_mo_c", catalog = "")
-public class OrderEntity {
+@Table(name = "orders", schema = "bo_mo_c", catalog = "")
+public class OrdersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Id")
@@ -16,7 +16,7 @@ public class OrderEntity {
     private int customerIdCus;
     @Basic
     @Column(name = "VoucherId")
-    private int voucherId;
+    private Integer voucherId;
     @Basic
     @Column(name = "OrderTotalPrice")
     private double orderTotalPrice;
@@ -25,8 +25,16 @@ public class OrderEntity {
     private Integer status;
 
     @Basic
-    @Column(name = "cartId")
+    @Column(name = "CartId")
     private int cartId;
+
+    @Basic
+    @Column(name = "PaymentType")
+    private int paymentType;
+
+    @Basic
+    @Column(name = "ShipmentType")
+    private int shipmentType;
 
     public int getId() {
         return id;
@@ -44,11 +52,11 @@ public class OrderEntity {
         this.customerIdCus = customerIdCus;
     }
 
-    public int getVoucherId() {
+    public Integer getVoucherId() {
         return voucherId;
     }
 
-    public void setVoucherId(int voucherId) {
+    public void setVoucherId(Integer voucherId) {
         this.voucherId = voucherId;
     }
 
@@ -76,16 +84,32 @@ public class OrderEntity {
         this.cartId = cartId;
     }
 
+    public int getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(int paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public int getShipmentType() {
+        return shipmentType;
+    }
+
+    public void setShipmentType(int shipmentType) {
+        this.shipmentType = shipmentType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderEntity that = (OrderEntity) o;
-        return id == that.id && customerIdCus == that.customerIdCus && voucherId == that.voucherId && Double.compare(that.orderTotalPrice, orderTotalPrice) == 0 && cartId == that.cartId && status.equals(that.status);
+        OrdersEntity that = (OrdersEntity) o;
+        return id == that.id && customerIdCus == that.customerIdCus && Double.compare(that.orderTotalPrice, orderTotalPrice) == 0 && cartId == that.cartId && paymentType == that.paymentType && shipmentType == that.shipmentType && Objects.equals(voucherId, that.voucherId) && Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customerIdCus, voucherId, orderTotalPrice, status, cartId);
+        return Objects.hash(id, customerIdCus, voucherId, orderTotalPrice, status, cartId, paymentType, shipmentType);
     }
 }

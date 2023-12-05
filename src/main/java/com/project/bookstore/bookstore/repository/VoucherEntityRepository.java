@@ -11,4 +11,6 @@ import java.util.List;
 
 public interface VoucherEntityRepository extends JpaRepository<VoucherEntity, Integer> {
     List<VoucherEntity> findAllByExprireTimeAfter(LocalDate currentDate);
+
+    VoucherEntity getVoucherEntityById(Integer id);
 }

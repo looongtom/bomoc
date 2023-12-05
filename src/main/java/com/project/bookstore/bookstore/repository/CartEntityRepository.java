@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CartEntityRepository extends JpaRepository<CartEntity, Integer> {
+    CartEntity getCartEntityById(int id);
+
     @Query("select r.id from CartEntity r where r.userId = ?1 and r.status = 0")
     Integer getCartIdByUserId(int userId);
 
