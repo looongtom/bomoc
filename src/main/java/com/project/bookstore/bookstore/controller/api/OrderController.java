@@ -35,8 +35,8 @@ public class OrderController {
     @Autowired
     private VoucherEntityRepository voucherEntityRepository;
 
-    @GetMapping("/by-cart-id")
-    public ResponseEntity<?> getOrderByCartId(@RequestParam int cartId) {
+    @PostMapping("/create-by-cart-id")
+    public ResponseEntity<?> createOrderByCartId(@RequestParam int cartId) {
         OrdersEntity ordersEntity = ordersEntityRepository.getOrdersEntitiesByCartId(cartId);
         CartEntity cart = cartEntityRepository.getCartEntityById(cartId);
         // chưa có order thì tạo mới rồi mới get
